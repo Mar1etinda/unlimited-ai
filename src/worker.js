@@ -97,7 +97,7 @@ async function handleChat(request, env) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: "freeapi",
+      model,
       stream: true,
       stream_options: { include_usage: true },
       messages: upstreamMessages

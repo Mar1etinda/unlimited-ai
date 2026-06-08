@@ -90,7 +90,7 @@ async function handleChat(request, env) {
     );
   }
 
-  const upstream = await fetch("https://freeapi.514179.xyz/v1/chat/completions", {
+  const upstream = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${env.NVIDIA_API_KEY}`,

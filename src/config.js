@@ -7,15 +7,15 @@
 export const CHAT_PASSWORD = "123456";
 
 // 默认模型
-export const DEFAULT_MODEL = "deepseek-ai/deepseek-v4-pro";
+export const DEFAULT_MODEL = "minimaxai/minimax-m3";
 
 export const MODELS = [
-  { id: "deepseek-ai/deepseek-v4-pro", label: "deepseek-v4-pro", persona: 1 },
-  { id: "deepseek-ai/deepseek-v4-flash", label: "deepseek-v4-flash", persona: 1 },
-  { id: "z-ai/glm-5.2", label: "glm-5.2", persona: 2 },
-  { id: "moonshotai/kimi-k2.6", label: "kimi-k2.6", persona: 2 },
   { id: "minimaxai/minimax-m3", label: "minimax-m3", persona: 1 },
+  { id: "z-ai/glm-5.2", label: "glm-5.2", persona: 2 },
   { id: "nvidia/nemotron-3-super-120b-a12b", label: "nemotron-super", persona: 2 },
+  { id: "google/gemma-4-31b-it", label: "gemma-4-31b", persona: 1 },
+  { id: "stepfun-ai/step-3.7-flash", label: "step-3.7-flash", persona: 2 },
+  { id: "poolside/laguna-xs-2.1", label: "laguna-xs-2.1", persona: 1 },
 ];
 
 // 内置人物模板 #1（deepseek/glm）——不会下发到网页

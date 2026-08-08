@@ -12,10 +12,10 @@ export const DEFAULT_MODEL = "deepseek-ai/deepseek-v4-pro";
 export const MODELS = [
   { id: "deepseek-ai/deepseek-v4-pro", label: "deepseek-v4-pro", persona: 1 },
   { id: "deepseek-ai/deepseek-v4-flash", label: "deepseek-v4-flash", persona: 1 },
-  { id: "zai-org/glm-5.2", label: "glm-5.2", persona: 2 },
-  { id: "zai-org/glm-5.1", label: "glm-5.1", persona: 2 },
-  { id: "meta/llama-4-maverick-17b-128e-instruct", label: "llama-4", persona: 1 },
-  { id: "moonshotai/kimi-k2-instruct-0905", label: "kimi-k2", persona: 2 },
+  { id: "z-ai/glm-5.2", label: "glm-5.2", persona: 2 },
+  { id: "moonshotai/kimi-k2.6", label: "kimi-k2.6", persona: 2 },
+  { id: "minimaxai/minimax-m3", label: "minimax-m3", persona: 1 },
+  { id: "nvidia/nemotron-3-super-120b-a12b", label: "nemotron-super", persona: 2 },
 ];
 
 // 内置人物模板 #1（deepseek/glm）——不会下发到网页

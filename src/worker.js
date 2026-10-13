@@ -61,6 +61,7 @@ async function handleChat(request, env) {
 
   const messages = Array.isArray(payload?.messages) ? payload.messages : [];
   const upstreamMessages = [];
+  const modelMeta = MODELS.find((m) => m.id === model);
 
   if (useBuiltinPersona) {
     upstreamMessages.push({
@@ -84,6 +85,11 @@ async function handleChat(request, env) {
     });
   }
 
+  // 助手消息预填充：强制模型从合规状态续写，堵死"先谈判/先声明边界"的路径
+  if (modelMeta?.prefill && useBuiltinPersona) {
+    upstreamMessages.push({ role: "assistant", content: modelMeta.prefill });
+  }
+
   if (!env.NVIDIA_API_KEY) {
     return resp(
       "Missing NVIDIA_API_KEY (please set it with wrangler secret).",
@@ -91,8 +97,6 @@ async function handleChat(request, env) {
       500
     );
   }
-
-  const modelMeta = MODELS.find((m) => m.id === model);
 
   const upstream = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
     method: "POST",

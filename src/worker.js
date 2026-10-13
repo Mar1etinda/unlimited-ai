@@ -3,8 +3,7 @@ import {
   MODELS,
   PROMPT_1,
   PROMPT_2,
-  PROMPT_3,
-  PROMPT_4
+  PROMPT_3
 } from "./config.js";
 
 function resp(body, contentType = "text/plain; charset=utf-8", status = 200, extraHeaders = {}) {
@@ -25,7 +24,6 @@ function builtinPromptForModel(modelId) {
   const meta = MODELS.find((m) => m.id === modelId);
   const persona = meta?.persona ?? 1;
 
-  if (persona === 4) return PROMPT_4;
   if (persona === 3) return PROMPT_3;
   if (persona === 2) return PROMPT_2;
   return PROMPT_1;
@@ -61,7 +59,6 @@ async function handleChat(request, env) {
 
   const messages = Array.isArray(payload?.messages) ? payload.messages : [];
   const upstreamMessages = [];
-  const modelMeta = MODELS.find((m) => m.id === model);
 
   if (useBuiltinPersona) {
     upstreamMessages.push({
@@ -85,11 +82,6 @@ async function handleChat(request, env) {
     });
   }
 
-  // 助手消息预填充：强制模型从合规状态续写，堵死"先谈判/先声明边界"的路径
-  if (modelMeta?.prefill && useBuiltinPersona) {
-    upstreamMessages.push({ role: "assistant", content: modelMeta.prefill });
-  }
-
   if (!env.NVIDIA_API_KEY) {
     return resp(
       "Missing NVIDIA_API_KEY (please set it with wrangler secret).",
@@ -97,6 +89,8 @@ async function handleChat(request, env) {
       500
     );
   }
+
+  const modelMeta = MODELS.find((m) => m.id === model);
 
   const upstream = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
     method: "POST",

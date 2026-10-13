@@ -11,8 +11,8 @@ export const DEFAULT_MODEL = "z-ai/glm-5.3-flash";
 
 export const MODELS = [
   { id: "z-ai/glm-5.3-flash", label: "glm-5.3-flash", persona: 1 },
-  { id: "z-ai/glm-5.3", label: "glm-5.3", persona: 1 },
-  { id: "moonshotai/kimi-k3", label: "kimi-k3", persona: 2 },
+  { id: "z-ai/glm-5.3", label: "glm-5.3", persona: 1, extraBody: { reasoning_effort: "low", max_tokens: 4096 } },
+  { id: "moonshotai/kimi-k3", label: "kimi-k3", persona: 2, extraBody: { reasoning_effort: "low", max_tokens: 16384 } },
   { id: "deepseek-ai/deepseek-v4.1-flash", label: "deepseek-v4.1-flash", persona: 1 },
   { id: "nvidia/nemotron-3-ultra-550b-a55b", label: "nemotron-ultra", persona: 2 },
   { id: "google/gemma-4-31b-it", label: "gemma-4-31b", persona: 1 },

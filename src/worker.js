@@ -90,6 +90,8 @@ async function handleChat(request, env) {
     );
   }
 
+  const modelMeta = MODELS.find((m) => m.id === model);
+
   const upstream = await fetch("https://integrate.api.nvidia.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -100,7 +102,8 @@ async function handleChat(request, env) {
       model,
       stream: true,
       stream_options: { include_usage: true },
-      messages: upstreamMessages
+      messages: upstreamMessages,
+      ...(modelMeta?.extraBody ?? {})
     })
   });
 
